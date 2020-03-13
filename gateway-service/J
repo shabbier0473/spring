@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("compile"){
             steps{
-                sh "cd gateway-service && mvn compile"
+                sh "cd gateway-service && mvn compile  && mvn install"
             }
         }
     }
