@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("compile"){
             steps{
-                sh "cd zipkin-service && mvn compile"
+                sh "cd zipkin-service && mvn compile && mvn install"
             }
         }
     }
