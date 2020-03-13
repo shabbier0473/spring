@@ -3,7 +3,8 @@ pipeline{
     tools { maven "MAVEN_HOME" }
     stages{
         stage("compile"){
-            dir ('account_service'){
+            steps{
+                sh "cd account-service"
                 sh "mvn compile"
             }
         }
