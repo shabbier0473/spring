@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("compile"){
             steps{
-                sh "cd customer-service && mvn compile"
+                sh "cd customer-service && mvn compile  && mvn install"
             }
         }
     }
