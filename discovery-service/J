@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("compile"){
             steps{
-                sh "cd  discovery-service && mvn clean compile"
+                sh "cd  discovery-service && mvn clean compile  && mvn install"
             }
         }
     }
