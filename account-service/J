@@ -1,9 +1,11 @@
 pipeline{
     agent { label "maven" }
     tools { maven "MAVEN_HOME" }
+    stages{
         stage("compile"){
             dir ('account_service'){
                 sh "mvn compile"
             }
         }
+    }
 }
