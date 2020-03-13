@@ -7,7 +7,7 @@ pipeline{
                 sh "cd gateway-service && mvn compile  && mvn install"
             }
         }
-        stage{
+        stage("zipkin"){
             steps{
                 build job : "zipkin-service"
             }
