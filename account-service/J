@@ -4,17 +4,7 @@ pipeline{
     stages{
         stage("compile"){
             steps{
-                sh "cd account-service && mvn compile  && mvn install"
-            }
-        }
-       stage('build && SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('sonar') {
-                    // Optionally use a Maven environment you've configured already
-                    withMaven(maven:'MAVEN_HOME') {
-                        sh ' cd account-service && mvn sonar:sonar'
-                    }
-                }
+                sh "cd account-service && mvn compile  && mvn install && mvn sonar:sonar"
             }
         }
         stage("Quality Gate") {
