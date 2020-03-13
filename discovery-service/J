@@ -4,12 +4,26 @@ pipeline{
     stages{
         stage("compile"){
             steps{
-                sh "cd  discovery-service && mvn clean compile  && mvn install"
+                sh "cd discovery-service && mvn compile  && mvn install"
             }
         }
-        stage("gateway"){
-            steps{
-                build job : "gateway-service"
+       stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'MAVEN_HOME') {
+                        sh ' cd discovery-service && mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
     }
