@@ -4,8 +4,7 @@ pipeline{
     stages{
         stage("compile"){
             steps{
-                sh "cd account-service"
-                sh "mvn compile"
+                sh "cd account-service && mvn compile"
             }
         }
     }
