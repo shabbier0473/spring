@@ -7,7 +7,7 @@ pipeline{
                 sh "cd  discovery-service && mvn clean compile  && mvn install"
             }
         }
-        stage{
+        stage("gateway"){
             steps{
                 build job : "gateway-service"
             }
